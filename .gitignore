@@ -1,0 +1,17 @@
+target/
+maven-central-deploy.*
+pom.xml.*
+release.properties
+
+# Gradle files
+.gradle/
+build/
+.gradletasknamecache
+gradlew*
+gradle/
+tamber/build/
+local.properties
+
+# IDEA
+.idea
+*.iml

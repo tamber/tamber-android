@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+android {
+	compileSdkVersion 25
+	buildToolsVersion '25.0.3'
+
+	defaultConfig {
+		minSdkVersion 25
+		targetSdkVersion 25
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_6
+		targetCompatibility JavaVersion.VERSION_1_6
+	}
+
+	lintOptions {
+		abortOnError false
+	}
+}
+
+configurations {
+	all*.exclude group: 'commons-logging', module: 'commons-logging'
+	all*.exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+}
+
+dependencies {
+	compile group: 'com.android.tools.build', name: 'gradle', version:'2.3.0'
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1'
+	compile group: 'com.loopj.android', name: 'android-async-http', version:'1.4.9'
+    testCompile group: 'junit', name: 'junit', version:'3.8.1'
+}
+
+/*task createJar(type: Copy) << {
+	from('build/intermediates/bundles/release/')
+	into('../builds')
+	include('classes.jar')
+	rename('classes.jar', 'tamber-${version}.jar')
+}
+
+tasks.build.finalizedBy(createJar)*/
+
+
+android.libraryVariants.all { variant ->
+	def name = variant.buildType.name
+	def task = project.tasks.create "jar${name.capitalize()}", Jar
+	task.dependsOn variant.javaCompile
+	task.from variant.javaCompile.destinationDir
+	artifacts.add('archives', task);
+}
