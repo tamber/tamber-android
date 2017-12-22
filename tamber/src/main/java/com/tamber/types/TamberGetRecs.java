@@ -3,13 +3,7 @@ package com.tamber.types;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import org.json.JSONObject;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.simple.JSONValue;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import com.tamber.exception.TamberException;
 
 public class TamberGetRecs {
 	public Integer number;

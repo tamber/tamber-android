@@ -9,9 +9,6 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.simple.JSONValue;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import com.tamber.exception.TamberException;
 
 public class TamberItem {
 	public String id;

@@ -11,6 +11,7 @@ gradlew*
 gradle/
 tamber/build/
 local.properties
+gradle.properties
 
 # IDEA
 .idea
