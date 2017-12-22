@@ -3,6 +3,8 @@ maven-central-deploy.*
 pom.xml.*
 release.properties
 test/
+*.asc
+*.hprof
 
 # Gradle files
 .gradle/

@@ -1,22 +1,35 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
+apply plugin: 'signing'
+
+archivesBaseName = 'tamber-android'
 
 android {
-	compileSdkVersion 25
-	buildToolsVersion '25.0.3'
+	compileSdkVersion 26
+	buildToolsVersion '26.0.2'
 
 	defaultConfig {
-		minSdkVersion 25
-		targetSdkVersion 25
-	}
-
-	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_6
-		targetCompatibility JavaVersion.VERSION_1_6
+		minSdkVersion 26
+		targetSdkVersion 26
 	}
 
 	lintOptions {
+		xmlReport false
 		abortOnError false
+	}
+
+	packagingOptions {
+		exclude 'LICENSE'
+		exclude 'META-INF/DEPENDENCIES'
+		exclude 'META-INF/NOTICE'
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE.txt'
+		exclude 'META-INF/LICENSE.txt'
+	}
+
+	compileOptions {
+		sourceCompatibility 1.8
+		targetCompatibility 1.8
 	}
 }
 
@@ -26,16 +39,92 @@ configurations {
 }
 
 dependencies {
-	compile group: 'com.android.tools.build', name: 'gradle', version:'2.3.0'
 	compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 	compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1'
 	compile group: 'com.loopj.android', name: 'android-async-http', version:'1.4.9'
 }
 
-android.libraryVariants.all { variant ->
-	def name = variant.buildType.name
-	def task = project.tasks.create "jar${name.capitalize()}", Jar
-	task.dependsOn variant.javaCompile
-	task.from variant.javaCompile.destinationDir
-	artifacts.add('archives', task);
+afterEvaluate { project ->
+	android.libraryVariants.all { variant ->
+		def name = variant.buildType.name
+		def task = project.tasks.create "jar${name.capitalize()}", Jar
+		task.dependsOn variant.javaCompile
+		task.from variant.javaCompile.destinationDir
+		task.destinationDir = new File(projectDir, '../builds')
+		artifacts.add('archives', task);
+	}
+
+	signing {
+		sign configurations.archives
+	}
+
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+				repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+					authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+				}
+
+				pom.groupId = 'com.tamber'
+				pom.artifactId = 'tamber-android'
+				pom.version = '0.1.4'
+				pom.project {
+					name 'tamber-android'
+					packaging 'aar'
+					description "Tamber Android Client"
+					url 'https://github.com/tamber/tamber-android'
+
+					licenses {
+						license {
+							name 'MIT'
+							url 'http://opensource.org/licenses/MIT'
+						}
+					}
+
+					scm {
+						url 'https://github.com/tamber/tamber-android'
+						connection 'scm:git:git@github.com:tamber/tamber-android.git'
+						developerConnection 'scm:git:git@github.com:tamber/tamber-android.git'
+					}
+
+					developers {
+						developer {
+							id 'argusdusty'
+							name 'Mark Canning'
+							email 'argusdusty@tamber.com'
+						}
+						developer {
+							id 'dinosaurcop'
+							name 'Alexi Robbins'
+							email 'alexi@tamber.com'
+						}
+					}
+				}
+			}
+		}
+	}
+
+	task androidJavadoc(type: Javadoc) {
+		failOnError false
+		source = android.sourceSets.main.java.srcDirs
+		classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+		classpath += configurations.compile
+	}
+
+	task androidJavadocJar(type: Jar, dependsOn: androidJavadoc) {
+		classifier = 'javadoc'
+		from androidJavadoc.destinationDir
+	}
+
+	task androidSourceJar(type: Jar) {
+		classifier = 'sources'
+		from android.sourceSets.main.java.srcDirs
+	}
+
+	artifacts {
+		archives androidSourceJar
+		archives androidJavadocJar
+	}
 }

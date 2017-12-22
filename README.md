@@ -12,6 +12,28 @@ Java 1.7 and later.
 Installation
 ============
 
+### Maven
+
+Add this dependency to your project's POM:
+
+```xml
+<dependency>
+  <groupId>com.tamber</groupId>
+  <artifactId>tamber-android</artifactId>
+  <version>0.1.4</version>
+</dependency>
+```
+
+### Gradle
+
+```repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile 'com.tamber:tamber-android:0.1.4'
+}```
+
 ### Manual
 
 Install the following JARs:
@@ -23,7 +45,7 @@ Install the following JARs:
 Usage
 =====
 
-All requests are asynchronous, you can access the response/error by supplying a response handler: [JsonHttpResponseHandler](https://loopj.com/android-async-http/doc/com/loopj/android/http/JsonHttpResponseHandler.html). In the future this will be replaced with a Tamber-specific response handler class that will be easier to use.
+All requests are asynchronous, you can access the response/error by supplying a TamberResponseHandler with an `onCompletion(JSONObject response, TamberException err)` function
 
 Example.java
 
