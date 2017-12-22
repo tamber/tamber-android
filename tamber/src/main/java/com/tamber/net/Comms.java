@@ -11,10 +11,10 @@ public class Comms {
 	}
 
 	public static void Get(Client client, String object, String method, RequestParams params, TamberResponseHandler respHandler) {
-		client.httpClient.get(object+"/"+method, params, respHandler.toJsonHttpResponseHandler());
+		client.httpClient.get(object+"/"+method, params, respHandler);
 	}
 
 	public static void Post(Client client, String object, String method, RequestParams params, TamberResponseHandler respHandler) {
-		client.httpClient.post(object+"/"+method, params, respHandler.toJsonHttpResponseHandler());
+		client.httpClient.post(object+"/"+method, params, respHandler);
 	}
 }

@@ -2,6 +2,7 @@ target/
 maven-central-deploy.*
 pom.xml.*
 release.properties
+test/
 
 # Gradle files
 .gradle/

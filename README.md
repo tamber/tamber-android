@@ -30,12 +30,13 @@ Example.java
 ```java
 import com.tamber.Tamber;
 import com.tamber.exception.TamberException;
+import com.tamber.types.TamberEvent;
+import com.tamber.types.TamberGetRecs;
+import com.tamber.net.TamberResponseHandler;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import org.json.JSONObject;
+import java.org.JSONObject;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class TamberExample {
 
@@ -44,15 +45,29 @@ public class TamberExample {
         Tamber tamber = new Tamber("your_project_key", "your_engine_key");
 
         //Create Event
-        HashMap<String,Object> eventParams = new HashMap<String,Object>();
-        eventParams.put("user", "user_rlox8k927z7p");
-        eventParams.put("item", "item_wmt4fn6o4zlk");
-        eventParams.put("behavior", "like");
+        TamberEvent event = new TamberEvent();
+        event.user = "user_rlox8k927z7p";
+        event.item = "item_wmt4fn6o4zlk";
+        event.behavior = "like";
 
         //Set get_recs to return fresh suggestions for the user [Optional]
-        eventParams.put("get_recs", new HashMap<String,Object>());
+        TamberGetRecs get_recs = new TamberGetRecs();
 
-        tamber.event.track(eventParams, null);
+        final CountDownLatch lock = new CountDownLatch(1);
+        tamber.event.track(event, get_recs, new TamberResponseHandler() {
+            @Override
+            public final void onCompletion(JSONObject response, TamberException err) {
+                // do stuff
+                lock.countDown();
+            }
+        });
+
+        try {
+            lock.await(30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            // handle error
+        }
+        // continue onward
     }
 }
 ```
