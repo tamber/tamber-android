@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 
 ### Gradle
 
-```
+```java
 repositories {
   mavenCentral()
 }
