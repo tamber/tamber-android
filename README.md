@@ -35,7 +35,8 @@ repositories {
 
 dependencies {
   compile 'com.tamber:tamber-android:0.1.4'
-}```
+}
+```
 
 ### Manual
 
