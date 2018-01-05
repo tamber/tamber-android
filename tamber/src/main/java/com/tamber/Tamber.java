@@ -31,6 +31,15 @@ public class Tamber {
 		behavior = new Behavior(client);
 	}
 
+	public Tamber(String projectKey) {
+		client = new Client(API_URL, projectKey, "", "", CLIENT_VERSION, httpSocketTimeoutMS, httpConnectTimeoutMS);
+		event = new Event(client);
+		discover = new Discover(client);
+		user = new User(client);
+		item = new Item(client);
+		behavior = new Behavior(client);
+	}
+
 	public void setApiVersion(String apiVersion) {
 		this.client.setApiVersion(apiVersion);
 	}

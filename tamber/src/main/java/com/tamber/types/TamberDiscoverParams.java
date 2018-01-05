@@ -5,28 +5,27 @@ import java.util.Map;
 import java.util.HashMap;
 import org.json.simple.JSONValue;
 
-public class TamberGetRecs {
+public class TamberDiscoverParams {
+	public String user;
+	public String item;
 	public Integer number;
 	public Integer page;
 	public TamberFilter filter;
 	public Boolean getProperties;
 
-	public List<String> excludeItems;
-	public Double variability;
-
 	public Map<String, Object> toMap() {
 		Map<String, Object> out = new HashMap<String, Object>();
+		if (user != null) {
+			out.put("user", user);
+		}
+		if (item != null) {
+			out.put("item", item);
+		}
 		if (number != null) {
 			out.put("number", number);
 		}
 		if (page != null) {
 			out.put("page", page);
-		}
-		if (excludeItems != null) {
-			out.put("exclude_items", excludeItems);
-		}
-		if (variability != null) {
-			out.put("variability", variability);
 		}
 		if (filter != null) {
 			out.put("filter", filter);
