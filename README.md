@@ -28,14 +28,15 @@ Add this dependency to your project's POM:
 
 ### Gradle
 
-```
+```java
 repositories {
   mavenCentral()
 }
 
 dependencies {
   compile 'com.tamber:tamber-android:0.1.4'
-}```
+}
+```
 
 ### Manual
 
@@ -186,3 +187,18 @@ try {
     // handle error
 }
 ```
+
+## License
+
+Released under the [MIT license][mit].
+
+[homepage]: https://tamber.com/
+[docs]: https://tamber.com/docs/
+[dashboard]: https://dashboard.tamber.com/
+[quickstart]: https://tamber.com/docs/start/
+[sdks]: https://tamber.com/docs/libs/
+[tamber-ruby]: https://github.com/tamber/tamber-ruby
+[tamber-go]: https://github.com/tamber/tamber-go
+[tamber-python]: https://github.com/tamber/tamber-python
+[tamber-java]: https://github.com/tamber/tamber-java
+[mit]: https://github.com/tamber/tamber.js/blob/master/LICENSE.md
