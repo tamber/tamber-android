@@ -20,20 +20,11 @@ public class TamberDiscoverNextParams {
 		if (user != null) {
 			out.put("user", user);
 		}
-		if (itemObject != null) {
-			out.put("item", itemObject.toString());
-		} else 
 		if (item != null) {
-			try {
-				TamberItem tmbItem = TamberItem.cast(item);
-				out.put("item", tmbItem.toString());
-			} catch (ClassNotFoundException e){
-				try {
-					STring strItem = String.cast(item);
-					out.put("item", strItem);
-				} catch (ClassNotFoundException e){
-					e.printStackTrace();
-				}
+			if (item instanceof TamberItem) {
+				out.put("item", ((TamberItem) item).toString());
+			} else if (item instanceof String) {
+				out.put("item", (String) item);
 			}
 		}
 		if (excludeItems != null) {
