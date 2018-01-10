@@ -52,4 +52,10 @@ public class Tamber {
         	this.client.httpConnectTimeoutMS = connectTimeout;
 		}
     }
+
+	public void setUser(String user) {
+		this.event.setUser(user);
+		this.discover.setUser(user);
+		this.user.setUser(user);
+	}
 }

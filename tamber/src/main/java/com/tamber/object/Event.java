@@ -15,15 +15,26 @@ import com.loopj.android.http.RequestParams;
 public class Event extends TamberObject {
 	private static final String object = "event";
 	private Client client;
+	private String user;
 
 	public Event(Client c) {
 		client = c;
 	}
 
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 	public void track(Map<String, Object> params, TamberResponseHandler respHandler) {
+		if (this.user != null && params.get("user") == null) {
+			params.put("user", user);
+		}
 		Comms.Post(client, object, "track", _getBody(params), respHandler);
 	}
 	public void track(TamberEvent event, TamberGetRecs get_recs, TamberResponseHandler respHandler) {
+		if (event.user == null) {
+			event.user = this.user;
+		}
 		Map<String, Object> params = event.toMap();
 		params.put("get_recs", get_recs);
 		track(params, respHandler);
