@@ -1,15 +1,15 @@
 package com.tamber;
 
 import com.tamber.net.Client;
-import com.tamber.object.Event;
-import com.tamber.object.Discover;
-import com.tamber.object.User;
-import com.tamber.object.Item;
 import com.tamber.object.Behavior;
+import com.tamber.object.Discover;
+import com.tamber.object.Event;
+import com.tamber.object.Item;
+import com.tamber.object.User;
 
 public class Tamber {
 	public static final String API_URL = "https://api.tamber.com/v1";
-	public static String CLIENT_VERSION = "0.1.4";
+	public static String CLIENT_VERSION = "0.1.5";
 	private int httpSocketTimeoutMS = 30000;
     private int httpConnectTimeoutMS = 80000;
 
@@ -41,15 +41,15 @@ public class Tamber {
 	}
 
 	public void setApiVersion(String apiVersion) {
-		this.client.setApiVersion(apiVersion);
+		client.setApiVersion(apiVersion);
 	}
 
 	public void setTimeout(int connectTimeout, int readTimeout) {
 		this.httpSocketTimeoutMS = readTimeout;
 		this.httpConnectTimeoutMS = connectTimeout;
 		if (client != null) {
-			this.client.httpSocketTimeoutMS = readTimeout;
-        	this.client.httpConnectTimeoutMS = connectTimeout;
+			client.httpSocketTimeoutMS = readTimeout;
+        	client.httpConnectTimeoutMS = connectTimeout;
 		}
     }
 

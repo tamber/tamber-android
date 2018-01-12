@@ -1,7 +1,7 @@
 package com.tamber.object;
 
-import com.tamber.net.Comms;
 import com.tamber.net.Client;
+import com.tamber.net.Comms;
 import com.tamber.net.TamberResponseHandler;
 import com.tamber.types.TamberDiscoverNextParams;
 import com.tamber.types.TamberDiscoverParams;
@@ -25,7 +25,7 @@ public class Discover extends TamberObject {
 		if (this.user != null && params.get("user") == null) {
 			params.put("user", this.user);
 		}
-		Comms.Post(client, object, "next", _getBody(params), respHandler);
+		Comms.Get(client, object, "next", _getBody(params), respHandler);
 	}
 	public void next(TamberDiscoverNextParams param, TamberResponseHandler respHandler) {
 		if (param.user == null) {
@@ -39,7 +39,7 @@ public class Discover extends TamberObject {
 		if (this.user != null && params.get("user") == null) {
 			params.put("user", this.user);
 		}
-		Comms.Post(client, object, "recommended", _getBody(params), respHandler);
+		Comms.Get(client, object, "recommended", _getBody(params), respHandler);
 	}
 	public void recommended(TamberDiscoverParams param, TamberResponseHandler respHandler) {
 		if (param.user == null) {
@@ -49,7 +49,7 @@ public class Discover extends TamberObject {
 		recommended(params, respHandler);
 	}
 	public void similar(Map<String, Object> params, TamberResponseHandler respHandler) {
-		Comms.Post(client, object, "similar", _getBody(params), respHandler);
+		Comms.Get(client, object, "similar", _getBody(params), respHandler);
 	}
 	public void similar(TamberDiscoverParams param, TamberResponseHandler respHandler) {
 		Map<String, Object> params = param.toMap();
@@ -59,7 +59,7 @@ public class Discover extends TamberObject {
 		if (this.user != null && params.get("user") == null) {
 			params.put("user", this.user);
 		}
-		Comms.Post(client, object, "recommended_similar", _getBody(params), respHandler);
+		Comms.Get(client, object, "recommended_similar", _getBody(params), respHandler);
 	}
 	public void recommendedSimilar(TamberDiscoverParams param, TamberResponseHandler respHandler) {
 		if (param.user == null) {
@@ -69,14 +69,14 @@ public class Discover extends TamberObject {
 		recommendedSimilar(params, respHandler);
 	}
 	public void popular(Map<String, Object> params, TamberResponseHandler respHandler) {
-		Comms.Post(client, object, "popular", _getBody(params), respHandler);
+		Comms.Get(client, object, "popular", _getBody(params), respHandler);
 	}
 	public void popular(TamberDiscoverParams param, TamberResponseHandler respHandler) {
 		Map<String, Object> params = param.toMap();
 		popular(params, respHandler);
 	}
 	public void hot(Map<String, Object> params, TamberResponseHandler respHandler) {
-		Comms.Post(client, object, "hot", _getBody(params), respHandler);
+		Comms.Get(client, object, "hot", _getBody(params), respHandler);
 	}
 	public void hot(TamberDiscoverParams param, TamberResponseHandler respHandler) {
 		Map<String, Object> params = param.toMap();

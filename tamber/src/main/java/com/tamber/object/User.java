@@ -1,11 +1,11 @@
 package com.tamber.object;
 
-import com.tamber.net.Comms;
 import com.tamber.net.Client;
+import com.tamber.net.Comms;
 import com.tamber.net.TamberResponseHandler;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class User extends TamberObject {
 	private static final String object = "user";
@@ -36,7 +36,7 @@ public class User extends TamberObject {
 		if (this.user != null && params.get("id") == null) {
 			params.put("id", user);
 		}
-		Comms.Post(client, object, "retrieve", this._getBody(params), respHandler);
+		Comms.Get(client, object, "retrieve", this._getBody(params), respHandler);
 	}
 	public void merge(String from, String to, Boolean no_create, TamberResponseHandler respHandler) {
 		if (from == null) {
@@ -47,7 +47,7 @@ public class User extends TamberObject {
 		params.put("from", from);
 		params.put("to", to);
 		if (no_create) {
-			params.put("no_create", no_create);
+			params.put("no_create", true);
 		}
 		Comms.Post(client, object, "merge", this._getBody(params), respHandler);
 	}

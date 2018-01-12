@@ -12,11 +12,12 @@ buildscript {
 
 allprojects {
 	group = 'com.tamber'
-	version = '0.1.4'
+	version = '0.1.5'
 
 	description = """Tamber Android Client"""
 
 	repositories {
 		mavenCentral()
+		google()
 	}
 }

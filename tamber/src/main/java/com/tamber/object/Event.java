@@ -1,16 +1,14 @@
 package com.tamber.object;
 
-import com.tamber.net.Comms;
 import com.tamber.net.Client;
+import com.tamber.net.Comms;
 import com.tamber.net.TamberResponseHandler;
 import com.tamber.types.TamberEvent;
 import com.tamber.types.TamberGetRecs;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-
-import com.loopj.android.http.RequestParams;
 
 public class Event extends TamberObject {
 	private static final String object = "event";
@@ -40,7 +38,7 @@ public class Event extends TamberObject {
 		track(params, respHandler);
 	}
 	public void retrieve(Map<String, Object> params, TamberResponseHandler respHandler) {
-		Comms.Post(client, object, "retrieve", _getBody(params), respHandler);
+		Comms.Get(client, object, "retrieve", _getBody(params), respHandler);
 	}
 	public void batch(Map<String, Object> params, TamberResponseHandler respHandler) {
 		Comms.Post(client, object, "batch", _getBody(params), respHandler);

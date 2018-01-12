@@ -22,7 +22,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tamber</groupId>
   <artifactId>tamber-android</artifactId>
-  <version>0.1.4</version>
+  <version>0.1.5</version>
 </dependency>
 ```
 
@@ -34,7 +34,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.tamber:tamber-android:0.1.4'
+  compile 'com.tamber:tamber-android:0.1.5'
 }
 ```
 

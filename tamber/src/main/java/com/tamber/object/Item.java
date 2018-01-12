@@ -1,12 +1,12 @@
 package com.tamber.object;
 
-import com.tamber.net.Comms;
 import com.tamber.net.Client;
+import com.tamber.net.Comms;
 import com.tamber.net.TamberResponseHandler;
 import com.tamber.types.TamberItem;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Item extends TamberObject {
 	private static final String object = "item";
@@ -26,7 +26,7 @@ public class Item extends TamberObject {
 		Comms.Post(client, object, "update", _getBody(params), respHandler);
 	}
 	public void retrieve(Map<String, Object> params, TamberResponseHandler respHandler) {
-		Comms.Post(client, object, "retrieve", _getBody(params), respHandler);
+		Comms.Get(client, object, "retrieve", _getBody(params), respHandler);
 	}
 	public void retrieve(String id, TamberResponseHandler respHandler) {
 		Map<String, Object> params = new HashMap<String, Object>();

@@ -11,6 +11,8 @@ android {
 	defaultConfig {
 		minSdkVersion 26
 		targetSdkVersion 26
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 
 	lintOptions {
@@ -42,6 +44,9 @@ dependencies {
 	compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 	compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1'
 	compile group: 'com.loopj.android', name: 'android-async-http', version:'1.4.9'
+	androidTestCompile 'junit:junit:4.12'
+	androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+	androidTestCompile 'com.android.support.test:rules:1.0.1'
 }
 
 afterEvaluate { project ->
@@ -69,7 +74,7 @@ afterEvaluate { project ->
 
 				pom.groupId = 'com.tamber'
 				pom.artifactId = 'tamber-android'
-				pom.version = '0.1.4'
+				pom.version = '0.1.5'
 				pom.project {
 					name 'tamber-android'
 					packaging 'aar'

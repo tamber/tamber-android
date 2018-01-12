@@ -1,9 +1,10 @@
 package com.tamber.types;
 
+import org.json.simple.JSONValue;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import org.json.simple.JSONValue;
 
 public class TamberGetRecs {
 	public Integer number;

@@ -1,6 +1,7 @@
 package com.tamber.net;
 
 import com.loopj.android.http.AsyncHttpClient;
+
 import org.apache.commons.codec.binary.Base64;
 
 public class Client {

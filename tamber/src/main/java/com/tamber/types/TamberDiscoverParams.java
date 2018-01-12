@@ -1,9 +1,9 @@
 package com.tamber.types;
 
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 import org.json.simple.JSONValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TamberDiscoverParams {
 	public String user;

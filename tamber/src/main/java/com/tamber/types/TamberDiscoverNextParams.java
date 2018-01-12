@@ -1,9 +1,10 @@
 package com.tamber.types;
 
+import org.json.simple.JSONValue;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import org.json.simple.JSONValue;
 
 public class TamberDiscoverNextParams {
 	public String user;
@@ -22,9 +23,9 @@ public class TamberDiscoverNextParams {
 		}
 		if (item != null) {
 			if (item instanceof TamberItem) {
-				out.put("item", ((TamberItem) item).toString());
+				out.put("item", item.toString());
 			} else if (item instanceof String) {
-				out.put("item", (String) item);
+				out.put("item", item);
 			}
 		}
 		if (excludeItems != null) {
